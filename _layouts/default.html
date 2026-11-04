@@ -3,50 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 150 }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <meta name="theme-color" content="#07131b">
+  <title>{% if page.title %}{{ page.title | escape }} · {{ site.title | escape }}{% else %}{{ site.title | escape }} — 코구모의 보안 기록{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 150 | escape }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/images/champions/kogmaw-icon.png' | relative_url }}">
 </head>
 <body>
+  <a class="skip-link" href="#main">본문으로 이동</a>
   <header class="site-header">
-    <div class="wrap header-row">
+    <div class="header-inner">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="코구모 블로그 홈">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span><strong>KOGUMO<span class="brand-number">0422</span></strong><small>SECURITY ARCHIVE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="주 메뉴">
+        <a class="{% if page.url == '/' %}is-current{% endif %}" href="{{ '/' | relative_url }}">챔피언 선택</a>
+        <a class="{% if page.url == '/categories/' %}is-current{% endif %}" href="{{ '/categories/' | relative_url }}">기록실</a>
+        <a class="{% if page.url == '/about/' %}is-current{% endif %}" href="{{ '/about/' | relative_url }}">소개</a>
+      </nav>
+      <div class="header-actions">
+        <button class="console-toggle" type="button" aria-expanded="false" aria-controls="terminal-drawer"><span aria-hidden="true">&gt;_</span><span class="console-label">터미널</span></button>
+        <a class="github-link" href="https://github.com/{{ site.author }}" aria-label="GitHub 프로필">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="terminal-drawer" id="terminal-drawer" hidden>
+      <div class="terminal-topline"><span>SUMMONER TERMINAL</span><button class="console-close" type="button" aria-label="터미널 닫기">×</button></div>
       <div class="terminal-prompt">
-        <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="홈으로 이동">
-          <span class="prompt-user">{{ site.author }}</span><span class="prompt-at">@</span><span class="prompt-host">sec</span><span class="prompt-path">:~$</span>
-        </a>
+        <span class="shell-identity">{{ site.author }}<span class="dim">@sec:~$</span></span>
         <form class="terminal-form" aria-label="블로그 터미널">
-          <label class="terminal-command-field">
-            <span class="sr-only">터미널 명령어 입력</span>
-            <input class="terminal-input" type="text" name="command" aria-label="터미널 명령어" placeholder=" " autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="send">
-            <span class="cursor" aria-hidden="true"></span>
-          </label>
+          <label class="terminal-command-field"><span class="sr-only">터미널 명령어 입력</span><input class="terminal-input" type="text" name="command" aria-label="터미널 명령어" placeholder=" " autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="send"><span class="cursor" aria-hidden="true"></span></label>
           <button class="sr-only" type="submit">명령어 실행</button>
         </form>
       </div>
-      <nav class="site-nav">
-        <a href="{{ '/' | relative_url }}">글</a>
-        <a href="{{ '/categories/' | relative_url }}">카테고리</a>
-        <a href="{{ '/about/' | relative_url }}">소개</a>
-      </nav>
-    </div>
-    <div class="terminal-output" role="region" aria-label="터미널 실행 결과" tabindex="0" hidden>
-      <ol class="wrap terminal-history" role="log" aria-live="polite" aria-relevant="additions"></ol>
+      <div class="terminal-output" role="region" aria-label="터미널 실행 결과" tabindex="0" hidden><ol class="terminal-history" role="log" aria-live="polite" aria-relevant="additions"></ol></div>
     </div>
   </header>
-
-  <main class="wrap">
-    {{ content }}
-  </main>
-
+  <main id="main" class="site-main">{{ content }}</main>
   <footer class="site-footer">
-    <div class="wrap">
-      <span>© {{ 'now' | date: "%Y" }} {{ site.author }}</span>
-      <a href="https://github.com/{{ site.author }}" rel="noopener">GitHub</a>
-    </div>
+    <span>© {{ 'now' | date: '%Y' }} Kogumo0422 <span class="footer-separator">/</span> 궁금한 것은 끝까지.</span>
+    <span class="art-credit"><a href="https://www.leagueoflegends.com/ko-kr/champions/kogmaw/">챔피언 아트 © Riot Games</a> · 비공식 개인 블로그</span>
   </footer>
   <script src="{{ '/assets/js/terminal.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <script src="{{ '/assets/js/champion-select.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>

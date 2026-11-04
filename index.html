@@ -1,40 +1,61 @@
 ---
 layout: default
 ---
-<section class="hero">
-  <p class="hero-line"><span class="dim">$</span> cat README.md</p>
-  <h1>{{ site.tagline }}</h1>
+{% assign category_names = site.category_list %}
+{% for category in site.categories %}{% assign category_name_array = category | slice: 0, 1 %}{% assign category_names = category_names | concat: category_name_array %}{% endfor %}
+{% assign category_names = category_names | uniq %}
+<div class="lobby-intro">
+  <div class="intro-rule" aria-hidden="true"></div>
+  <div><p class="eyebrow">KOGUMO'S CHAMPION SELECT</p><h1>오늘의 탐험을 선택하세요</h1><p class="intro-subtitle">코구모의 호기심이 향하는 곳, 그곳이 오늘의 전장.</p></div>
+  <div class="intro-rule" aria-hidden="true"></div>
+</div>
+<section class="select-layout" aria-label="코구모의 챔피언 선택">
+  <aside class="roster-panel">
+    <div class="panel-heading"><h2>탐험 분야</h2><span class="micro">{{ category_names.size }} FIELDS</span></div>
+    <div class="roster-list">
+      {% for category_name in category_names %}{% assign detail = site.data.category_details[category_name] %}{% assign skin = detail.skin | default: 0 %}
+      <button class="roster-item{% if category_name == 'CTF/Wargame' %} is-selected{% endif %}" type="button" data-pick="{{ category_name | escape }}" aria-pressed="{% if category_name == 'CTF/Wargame' %}true{% else %}false{% endif %}">
+        <span class="roster-portrait"><img src="{{ '/assets/images/champions/portrait-' | append: skin | append: '.webp' | relative_url }}" alt="" width="50" height="60" loading="lazy"></span>
+        <span class="roster-text"><span class="micro">0{{ forloop.index }} / {{ detail.english | default: 'ARCHIVE' }}</span><strong>{{ category_name | escape }}</strong><span class="roster-record"><span class="count">{{ site.categories[category_name].size | default: 0 }}</span>개의 기록</span></span>
+        <span class="roster-diamond" aria-hidden="true">◇</span>
+      </button>
+      {% endfor %}
+    </div>
+    <div class="roster-note"><span class="tiny-diamond" aria-hidden="true"></span><p>한 번의 시도,<br>하나의 발견.</p></div>
+  </aside>
+  <div class="center-column">
+    <div class="champion-stage">
+      <img class="stage-image" id="stage-image" src="{{ '/assets/images/champions/splash-0.webp' | relative_url }}" alt="코그모 스플래시 아트" width="1600" height="944" fetchpriority="high">
+      <div class="stage-vignette" aria-hidden="true"></div><div class="stage-frame" aria-hidden="true"></div>
+      <div class="stage-topline"><span class="stage-live"><span></span> KOGUMO'S PICK</span><span class="micro">SECURITY EXPLORER</span></div>
+      <div class="stage-copy"><p class="champion-epithet">끝없는 호기심의 탐험가</p><h2>코구모<span>KOGUMO</span></h2><p class="champion-quote">먹어보고, 뜯어보고, 기록한다.</p><div class="stage-tags"><span>보안 공부 기록</span><span id="stage-category">CTF / WARGAME</span></div></div>
+      <div class="stage-index" aria-hidden="true">0422</div>
+    </div>
+    <div class="pool-heading"><h2>분야를 선택하세요</h2><span class="micro">CHOOSE YOUR FIELD</span></div>
+    <div class="champion-pool" aria-label="분야 선택 카드">
+      {% for category_name in category_names %}{% assign detail = site.data.category_details[category_name] %}{% assign skin = detail.skin | default: 0 %}
+      <button class="champion-card{% if category_name == 'CTF/Wargame' %} is-selected{% endif %}" type="button" data-pick="{{ category_name | escape }}" data-english="{{ detail.english | default: 'ARCHIVE' | escape }}" data-subtitle="{{ detail.subtitle | default: '호기심이 남긴 기록' | escape }}" data-description="{{ detail.description | default: '이 분야에서 배운 내용을 기록합니다.' | escape }}" data-splash="{{ '/assets/images/champions/splash-' | append: skin | append: '.webp' | relative_url }}" data-skin="{{ detail.skin_name | default: '코그모' | escape }}" aria-pressed="{% if category_name == 'CTF/Wargame' %}true{% else %}false{% endif %}">
+        <span class="card-art"><img src="{{ '/assets/images/champions/portrait-' | append: skin | append: '.webp' | relative_url }}" alt="" width="160" height="180" loading="lazy"><span class="card-check" aria-hidden="true">✓</span></span>
+        <span class="card-name">{{ category_name | escape }}</span>
+      </button>{% endfor %}
+    </div>
+  </div>
+  <aside class="summoner-panel">
+    <div class="panel-heading"><h2>소환사 정보</h2><span class="tiny-diamond" aria-hidden="true"></span></div>
+    <a class="summoner-profile" href="{{ '/about/' | relative_url }}"><span class="avatar-ring"><img src="{{ '/assets/images/champions/kogmaw-icon.png' | relative_url }}" alt="코그모 아이콘" width="66" height="66"></span><strong>Kogumo0422</strong><span class="summoner-tag">배우고, 탐험하고, 기록하는 사람</span></a>
+    <div class="profile-stats"><div><strong>{{ category_names.size }}</strong><span>탐험 분야</span></div><div><strong class="count">{{ site.posts.size }}</strong><span>쌓인 기록</span></div></div>
+    <div class="gold-divider" aria-hidden="true"><span>◇</span></div>
+    <div class="selected-field" aria-live="polite"><p class="eyebrow">선택한 분야</p><h3 id="selected-title">CTF/Wargame</h3><p class="field-subtitle" id="selected-subtitle">작은 단서에서 시작되는 탐험</p><p class="field-description" id="selected-description">낯선 문제를 만나고, 단서를 연결하고, flag에 닿기까지의 과정을 기록합니다.</p></div>
+    <div class="loadout"><p class="micro">MY LOADOUT</p><div><span class="loadout-key">Q</span><span>관찰</span><span class="loadout-key">W</span><span>분석</span><span class="loadout-key">E</span><span>기록</span></div></div>
+    <a class="lock-in" id="lock-in" href="#archive"><span>기록 보기</span><span aria-hidden="true">→</span></a>
+    <p class="pick-hint">당신의 호기심을 선택하세요.</p>
+  </aside>
 </section>
-
-  {% assign category_names = site.category_list %}
-  {% for category in site.categories %}
-    {% assign category_name_array = category | slice: 0, 1 %}
-    {% assign category_names = category_names | concat: category_name_array %}
-  {% endfor %}
-  {% assign category_names = category_names | uniq %}
-{% if category_names.size > 0 %}
-<section class="category-shortcuts" aria-label="카테고리">
-  <h2 class="section-label">카테고리</h2>
-  {% for category_name in category_names %}
-  <a class="category-link" href="{{ '/categories/' | relative_url }}#{{ category_name | slugify }}">{{ category_name | escape }} <span class="count">{{ site.categories[category_name].size | default: 0 }}개</span></a>
-  {% endfor %}
-</section>
-{% endif %}
-
-<section class="post-list">
-  <h2 class="section-label"><span class="dim">$</span> ls _posts/ <span class="count">{{ site.posts.size }}개</span></h2>
-  <ul>
-    {% for post in site.posts %}
-    <li class="post-item">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-      <div class="post-item-body">
-        <a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        {% if post.categories.size > 0 %}<a class="post-cat" href="{{ '/categories/' | relative_url }}#{{ post.categories.first | slugify }}">{{ post.categories | first | escape }}</a>{% endif %}
-        <p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 110 }}</p>
-      </div>
-    </li>
-    {% else %}
-    <li class="empty-state">아직 작성된 글이 없습니다.</li>
-    {% endfor %}
+<section class="archive-section" id="archive" aria-labelledby="archive-title">
+  <div class="archive-heading"><div><p class="eyebrow">EXPLORATION LOG</p><h2 id="archive-title">CTF/Wargame 기록</h2></div><button class="text-button" id="show-all" type="button">전체 기록 보기 <span aria-hidden="true">↗</span></button></div>
+  <ul class="post-list">
+    {% for post in site.posts %}<li class="post-item" data-post-categories="{{ post.categories | jsonify | escape }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><div class="post-item-body"><div class="post-item-meta">{% for cat in post.categories %}<span>{{ cat | escape }}</span>{% endfor %}</div><a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p></div><span class="post-arrow" aria-hidden="true">↗</span></li>{% endfor %}
   </ul>
+  <div class="archive-empty" id="archive-empty" {% if site.posts.size > 0 %}hidden{% endif %}><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>다음 탐험을 준비 중입니다</h3><p id="archive-empty-text">아직 이 분야에 작성된 글이 없습니다. 첫 번째 발견을 기다려 주세요.</p></div><span class="micro">STAY CURIOUS.</span></div>
+  <noscript><p class="noscript-note">분야별 기록은 <a href="{{ '/categories/' | relative_url }}">기록실</a>에서 확인하실 수 있습니다.</p></noscript>
 </section>

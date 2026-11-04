@@ -27,7 +27,7 @@ tags: []
 ## 카테고리 관리
 
 `_config.yml`의 `category_list`에 적힌 카테고리는 글이 없어도 표시됩니다.
-현재 고정 카테고리는 없습니다. 글에 카테고리를 지정하면 자동으로 함께 표시됩니다.
+기본 6개 분야와 글에서 사용하는 카테고리가 함께 표시됩니다. 챔피언 선택 화면의 분야별 이미지·설명은 `_data/category_details.yml`에서 수정합니다.
 
 ## 주요 파일
 
@@ -38,3 +38,12 @@ tags: []
 - `index.html`: 메인 화면
 - `categories.html`: 카테고리별 글 목록
 - `about.md`: 소개
+
+
+## 챔피언 선택 테마
+
+- 홈의 분야 카드와 왼쪽 목록에서 카테고리를 선택하면 코그모 스플래시, 분야 설명, 아래 글 목록이 함께 바뀝니다.
+- `기록 보기`로 선택한 분야의 글 목록으로 이동합니다. 기존 기록실과 글 주소도 그대로 사용할 수 있습니다.
+- 오른쪽 위 터미널에서 `ls`, `cat flag.txt`, `clear`를 사용할 수 있습니다. 결과는 마지막 실행 후 15초 뒤 지워집니다.
+- 챔피언 이미지는 Riot Games의 [Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon) 공식 자료를 사용합니다. 이 사이트는 Riot Games의 공식 서비스가 아닌 개인 블로그입니다.
+- 화면 스타일은 `assets/css/style.css`, 분야 선택 동작은 `assets/js/champion-select.js`, 터미널 동작은 `assets/js/terminal.js`에 있습니다.

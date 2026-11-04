@@ -1,34 +1,15 @@
 ---
 layout: default
-title: 카테고리
+title: 기록실
 permalink: /categories/
 ---
-<section class="categories-page">
-  <h1 class="section-label"><span class="dim">$</span> tree ./categories</h1>
-  {% assign category_names = site.category_list %}
-  {% for category in site.categories %}
-    {% assign category_name_array = category | slice: 0, 1 %}
-    {% assign category_names = category_names | concat: category_name_array %}
-  {% endfor %}
-  {% assign category_names = category_names | uniq %}
-  {% for category_name in category_names %}
-  {% assign category_posts = site.categories[category_name] %}
-  <div class="category-group">
-    <h2 id="{{ category_name | slugify }}">{{ category_name | escape }} <span class="count">{{ category_posts.size | default: 0 }}개</span></h2>
-    {% if category_posts.size > 0 %}
-    <ul>
-      {% for post in category_posts %}
-      <li class="post-item">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="empty-state">아직 작성된 글이 없습니다.</p>
-    {% endif %}
-  </div>
-  {% else %}
-  <p class="empty-state">등록된 카테고리가 없습니다.</p>
-  {% endfor %}
-</section>
+{% assign category_names = site.category_list %}
+{% for category in site.categories %}{% assign category_name_array = category | slice: 0, 1 %}{% assign category_names = category_names | concat: category_name_array %}{% endfor %}
+{% assign category_names = category_names | uniq %}
+<div class="page-container">
+  <header class="page-heading"><p class="eyebrow">THE ARCHIVES</p><h1>코구모의 기록실</h1><p>각자의 색을 가진 여섯 개의 탐험. 궁금한 분야부터 펼쳐 보세요.</p></header>
+  <nav class="catalog-grid" aria-label="분야별 기록 바로가기">{% for category_name in category_names %}{% assign detail = site.data.category_details[category_name] %}{% assign skin = detail.skin | default: 0 %}<a class="catalog-card" href="#{{ category_name | slugify }}"><img src="{{ '/assets/images/champions/portrait-' | append: skin | append: '.webp' | relative_url }}" alt="" width="160" height="180" loading="lazy"><span class="catalog-caption"><span class="micro">{{ detail.english | default: 'ARCHIVE' }}</span><strong>{{ category_name | escape }}</strong><span class="count">{{ site.categories[category_name].size | default: 0 }}개의 기록</span></span></a>{% endfor %}</nav>
+  {% for category_name in category_names %}{% assign category_posts = site.categories[category_name] %}
+  <section class="category-group" id="{{ category_name | slugify }}"><div class="category-group-heading"><h2>{{ category_name | escape }} <span class="count">{{ category_posts.size | default: 0 }}개</span></h2><a class="text-button" href="{{ '/' | relative_url }}?category={{ category_name | url_encode }}#archive">선택 화면에서 보기 ↗</a></div>
+  {% if category_posts.size > 0 %}<ul class="post-list">{% for post in category_posts %}<li class="post-item"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><span class="post-arrow" aria-hidden="true">↗</span></li>{% endfor %}</ul>{% else %}<p class="empty-state">아직 작성된 글이 없습니다. 다음 탐험을 준비하고 있습니다.</p>{% endif %}</section>{% endfor %}
+</div>
