@@ -15,6 +15,41 @@
     if (event.key === 'Escape' && drawer && !drawer.hidden) setConsole(false);
   });
 
+  const shareButton = document.querySelector('.share-trigger');
+  const shareStatus = document.querySelector('.share-status');
+  let shareTimer;
+  const copyPageLink = async () => {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        return;
+      } catch { /* Try the selection-based fallback. */ }
+    }
+    const field = document.createElement('textarea');
+    field.value = window.location.href;
+    field.readOnly = true;
+    field.style.cssText = 'position:fixed;left:-9999px;top:0;';
+    document.body.append(field);
+    try {
+      field.select();
+      field.setSelectionRange(0, field.value.length);
+      if (!document.execCommand('copy')) throw new Error('Copy unavailable');
+    } finally {
+      field.remove();
+      shareButton.focus({ preventScroll: true });
+    }
+  };
+  shareButton?.addEventListener('click', async () => {
+    clearTimeout(shareTimer);
+    try {
+      await copyPageLink();
+      shareStatus.textContent = '링크를 복사했습니다.';
+    } catch {
+      shareStatus.textContent = '주소창의 링크를 복사해 주세요.';
+    }
+    shareTimer = setTimeout(() => { shareStatus.textContent = ''; }, 3000);
+  });
+
   const cards = [...document.querySelectorAll('.champion-card')];
   if (!cards.length) return;
   const choices = [...document.querySelectorAll('[data-pick]')];
