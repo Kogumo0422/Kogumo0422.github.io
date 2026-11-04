@@ -20,6 +20,7 @@
   const choices = [...document.querySelectorAll('[data-pick]')];
   const posts = [...document.querySelectorAll('[data-post-categories]')];
   const stage = document.querySelector('#stage-image');
+  const avatar = document.querySelector('#summoner-avatar');
   const title = document.querySelector('#selected-title');
   const subtitle = document.querySelector('#selected-subtitle');
   const description = document.querySelector('#selected-description');
@@ -37,6 +38,10 @@
       choice.setAttribute('aria-pressed', String(selected));
     });
     if (card) {
+      if (avatar) {
+        avatar.src = card.querySelector('img').getAttribute('src');
+        avatar.alt = `${card.dataset.skin} 프로필`;
+      }
       if (stage.getAttribute('src') !== card.dataset.splash) {
         stage.src = card.dataset.splash;
         stage.alt = `${card.dataset.skin} 스플래시 아트`;

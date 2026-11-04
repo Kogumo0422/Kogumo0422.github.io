@@ -44,6 +44,8 @@ tags: []
 
 - 홈의 분야 카드와 왼쪽 목록에서 카테고리를 선택하면 코그모 스플래시, 분야 설명, 아래 글 목록이 함께 바뀝니다.
 - `기록 보기`로 선택한 분야의 글 목록으로 이동합니다. 기존 기록실과 글 주소도 그대로 사용할 수 있습니다.
-- 오른쪽 위 터미널에서 `ls`, `cat flag.txt`, `clear`를 사용할 수 있습니다. 결과는 마지막 실행 후 15초 뒤 지워집니다.
+- 오른쪽 위 터미널에서 `ls`로 공개 게시글 제목과 `flag.txt`를 나열하고, `cat 글 제목` 또는 `cat "글 제목"`으로 해당 글을 열 수 있습니다. `cat flag.txt`, `clear`도 사용할 수 있습니다. 결과는 마지막 실행 후 15초 뒤 지워집니다.
 - 챔피언 이미지는 Riot Games의 [Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon) 공식 자료를 사용합니다. 이 사이트는 Riot Games의 공식 서비스가 아닌 개인 블로그입니다.
 - 화면 스타일은 `assets/css/style.css`, 분야 선택 동작은 `assets/js/champion-select.js`, 터미널 동작은 `assets/js/terminal.js`에 있습니다.
+
+기본 스킨은 꿀잼 코그모이며 분야 선택 시 큰 이미지와 소환사 프로필이 함께 변경됩니다. 글 목록은 Jekyll의 공개 `site.posts`에서 생성되어 새 글을 배포하면 자동으로 반영됩니다.

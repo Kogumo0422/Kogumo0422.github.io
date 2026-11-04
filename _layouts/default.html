@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-  <link rel="icon" type="image/png" href="{{ '/assets/images/champions/kogmaw-icon.png' | relative_url }}">
+  <link rel="icon" type="image/webp" href="{{ '/assets/images/champions/portrait-28.webp' | relative_url }}">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 이동</a>
@@ -47,6 +47,7 @@
     <span>© {{ 'now' | date: '%Y' }} Kogumo0422 <span class="footer-separator">/</span> 궁금한 것은 끝까지.</span>
     <span class="art-credit"><a href="https://www.leagueoflegends.com/ko-kr/champions/kogmaw/">챔피언 아트 © Riot Games</a> · 비공식 개인 블로그</span>
   </footer>
+  <template id="terminal-posts">{% for post in site.posts %}<a href="{{ post.url | relative_url }}" data-title="{{ post.title | escape }}">{{ post.title | escape }}</a>{% endfor %}</template>
   <script src="{{ '/assets/js/terminal.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <script src="{{ '/assets/js/champion-select.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </body>
