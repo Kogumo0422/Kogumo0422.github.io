@@ -60,6 +60,8 @@
   const description = document.querySelector('#selected-description');
   const archiveTitle = document.querySelector('#archive-title');
   const showAll = document.querySelector('#show-all');
+  const archiveJump = document.querySelector('#lock-in');
+  const archiveJumpLabel = archiveJump.querySelector('span');
   const empty = document.querySelector('#archive-empty');
   const english = document.querySelector('#stage-category');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -67,7 +69,9 @@
   const select = (category, updateUrl = true) => {
     const card = cards.find((item) => item.dataset.pick === category);
     if (category && !card) return;
-    showAll.setAttribute('aria-pressed', String(!category));
+    showAll.hidden = !card;
+    archiveJump.hidden = !card;
+    if (card) archiveJumpLabel.textContent = `${category} 글 목록으로`;
     cards.forEach((choice) => {
       const selected = choice.dataset.pick === category;
       choice.classList.toggle('is-selected', selected);
@@ -114,7 +118,10 @@
   };
 
   cards.forEach((choice) => choice.addEventListener('click', () => select(choice.dataset.pick)));
-  showAll.addEventListener('click', () => select(''));
+  showAll.addEventListener('click', () => {
+    select('');
+    archiveTitle.focus({ preventScroll: true });
+  });
   const requested = new URLSearchParams(window.location.search).get('category');
   select(cards.some((card) => card.dataset.pick === requested) ? requested : '', false);
 })();

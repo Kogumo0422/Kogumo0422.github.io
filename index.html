@@ -2,6 +2,7 @@
 layout: default
 ---
 {% assign archive_posts = site.posts | where_exp: 'post', 'post.security_news != true' %}
+{% assign latest_news = site.posts | where_exp: 'post', 'post.security_news == true' | first %}
 {% assign category_names = site.category_list %}
 {% for category in site.categories %}
   {% assign category_posts = category[1] | where_exp: 'post', 'post.security_news != true' %}
@@ -18,15 +19,31 @@ layout: default
   <p class="intro-subtitle">보안 실습, 개발, 기술 문서를 읽고 검증한 과정을 정리합니다.</p>
 </header>
 
+<section class="home-news" aria-labelledby="home-news-title">
+  <div>
+    <p class="eyebrow">SECURITY BRIEF</p>
+    <h2 id="home-news-title">보안 뉴스</h2>
+  </div>
+  <div class="home-news-preview">
+    {% if latest_news %}
+      <time datetime="{{ latest_news.date | date_to_xmlschema }}">{{ latest_news.date | date: '%Y.%m.%d' }}</time>
+      <p>{{ latest_news.title | escape }}</p>
+    {% else %}
+      <p>보안 이슈를 한 줄 요약과 X 원문으로 모읍니다.</p>
+    {% endif %}
+  </div>
+  <a class="text-button" href="{{ '/news/' | relative_url }}">뉴스 아카이브 <span aria-hidden="true">→</span></a>
+</section>
+
 <section class="archive-section" id="archive" aria-labelledby="archive-title">
   <div class="archive-heading">
     <div>
       <p class="eyebrow">EXPLORATION LOG</p>
-      <h2 id="archive-title">전체 기록</h2>
+      <h2 id="archive-title" tabindex="-1">전체 기록</h2>
     </div>
     <div class="archive-actions">
-      <button class="filter-button" id="show-all" type="button" aria-pressed="true">전체 기록 보기</button>
-      <a class="text-button" href="#fields">분야 선택 <span aria-hidden="true">↓</span></a>
+      <button class="filter-button" id="show-all" type="button" hidden>필터 해제</button>
+      <a class="text-button" href="#fields">분야별로 찾기 <span aria-hidden="true">↓</span></a>
     </div>
   </div>
   <ul class="post-list">
@@ -36,7 +53,7 @@ layout: default
   <noscript><p class="noscript-note">분야별 기록은 <a href="{{ '/categories/' | relative_url }}">기록실</a>에서 확인하실 수 있습니다.</p></noscript>
 </section>
 
-<section class="select-layout" id="fields" aria-label="기록 분야 선택">
+<section class="select-layout" id="fields" aria-label="기록 분야 선택" tabindex="-1">
   <div class="center-column">
     <div class="champion-stage">
       <div class="stage-copy">
@@ -76,6 +93,6 @@ layout: default
       <p class="field-description" id="selected-description">모든 분야의 실습과 학습 기록을 확인할 수 있습니다.</p>
     </div>
     <div class="loadout"><p class="micro">MY LOADOUT</p><div class="loadout-items"><span class="loadout-item"><span class="loadout-key">Q</span><span>관찰</span></span><span class="loadout-item"><span class="loadout-key">W</span><span>분석</span></span><span class="loadout-item"><span class="loadout-key">E</span><span>기록</span></span><button class="loadout-item share-trigger" type="button" aria-label="현재 페이지 링크 복사" title="현재 페이지 링크 복사"><span class="loadout-key">R</span><span>공유</span></button></div><p class="share-status" role="status" aria-live="polite"></p></div>
-    <a class="lock-in" id="lock-in" href="#archive"><span>기록 보기</span><span aria-hidden="true">↑</span></a>
+    <a class="lock-in" id="lock-in" href="#archive-title" hidden><span>선택한 분야 글로 이동</span><span aria-hidden="true">↑</span></a>
   </aside>
 </section>

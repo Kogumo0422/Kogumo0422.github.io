@@ -105,6 +105,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .lock-in span:last-child { color: var(--gold); }
 
 /* Security news */
+.home-news { display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; align-items: center; gap: 18px; padding: 13px 17px; margin: 0 0 20px; border: 1px solid var(--line); border-left: 2px solid var(--gold-dim); background: var(--panel); }
+.home-news .eyebrow { margin: 0 0 2px; }
+.home-news h2 { margin: 0; color: var(--text); font-size: 16px; font-weight: 500; }
+.home-news-preview { min-width: 0; }
+.home-news-preview time { display: block; margin-bottom: 3px; color: var(--muted); font: 10px var(--mono); }
+.home-news-preview p { margin: 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
 .page-container.news-page { max-width: 1060px; }
 .news-layout { display: grid; grid-template-columns: 284px minmax(0, 1fr); align-items: start; gap: 24px; }
 .news-calendar[hidden] + .news-results { grid-column: 1 / -1; }
@@ -294,6 +300,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .card-art { height: 37px; }
   .card-name { font-size: 11px; }
   .summoner-panel { padding: 0 13px 12px; }
+  .home-news { grid-template-columns: minmax(0, 1fr) max-content; gap: 7px 10px; padding: 11px 13px; }
+  .home-news-preview { grid-column: 1 / -1; grid-row: 2; }
   .news-list .post-item { grid-template-columns: minmax(0, 1fr) max-content; gap: 3px 10px; }
   .news-list .post-item time { grid-column: 1 / -1; }
   .news-summary { font-size: 14px; }
