@@ -1,9 +1,23 @@
 ---
 layout: default
 ---
+{% if page.security_news %}
+<article class="reading-layout">
+  <a class="reading-back" href="{{ '/news/' | relative_url }}">← 보안 뉴스로 돌아가기</a>
+  <header class="post-header">
+    <p class="eyebrow">SECURITY BRIEF</p>
+    <div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time></div>
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+  </header>
+  {% include news-source.html url=page.source_url %}
+  {% assign article_content = content | strip %}
+  {% if article_content != '' %}<div class="post-content">{{ content }}</div>{% endif %}
+</article>
+{% else %}
 <article class="reading-layout">
   <a class="reading-back" href="{{ '/' | relative_url }}#archive">← 탐험 기록으로 돌아가기</a>
   <header class="post-header"><p class="eyebrow">EXPLORATION LOG</p><div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>{% for cat in page.categories %}<a class="post-cat" href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}">{{ cat | escape }}</a>{% endfor %}</div><h1 class="post-title">{{ page.title | escape }}</h1>{% if page.tags.size > 0 %}<div class="post-tags">{% for tag in page.tags %}<span>#{{ tag | escape }}</span>{% endfor %}</div>{% endif %}</header>
   <div class="post-content">{{ content }}</div>
   <nav class="post-nav" aria-label="이전 글과 다음 글">{% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>{% else %}<span></span>{% endif %}{% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>{% endif %}</nav>
 </article>
+{% endif %}

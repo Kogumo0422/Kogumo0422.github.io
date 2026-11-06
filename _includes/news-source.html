@@ -1,0 +1,5 @@
+{%- assign source_url = include.url | strip -%}
+{%- assign source_prefix = source_url | slice: 0, 14 -%}
+{%- if source_prefix == 'https://x.com/' -%}
+  <a class="news-source" href="{{ source_url | escape }}">X 원문 <span aria-hidden="true">↗</span></a>
+{%- endif -%}

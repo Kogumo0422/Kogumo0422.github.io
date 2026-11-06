@@ -24,6 +24,21 @@ tags: []
 `main` 브랜치에 커밋하고 push하면 GitHub Pages가 배포합니다.
 저장소의 Actions 탭에서 배포 결과를 확인할 수 있습니다.
 
+## MD Push로 보안 뉴스 올리기
+
+MD Push에서 블로그 저장소를 선택하고 **HTB 블로그 게시**를 끈 뒤, **저장소 안의 폴더**에 `_posts/security-news`를 입력합니다.
+
+`YYYY-MM-DD-이슈이름.md` 형식으로 파일을 저장해 앱에 놓습니다. 같은 날 여러 건을 올릴 때는 이슈 이름을 다르게 지정합니다. 파일은 아래 형식으로 작성합니다.
+
+```yaml
+---
+title: "이슈를 한 문장으로 요약"
+source_url: "https://x.com/계정/status/게시물번호"
+---
+```
+
+GitHub Pages가 배포하면 **보안 뉴스** 탭에 날짜, 한 줄 요약, X 원문 링크가 최신순으로 표시됩니다. 같은 파일명으로 다시 올리면 기존 항목이 갱신됩니다.
+
 ## 카테고리 관리
 
 `_config.yml`의 `category_list`에 적힌 카테고리는 글이 없어도 표시됩니다.
@@ -37,15 +52,16 @@ tags: []
 - `assets/css/style.css`: 스타일
 - `index.html`: 메인 화면
 - `categories.html`: 카테고리별 글 목록
-- `about.md`: 소개
+- `about.html`: 소개
+- `news.html`: 보안 뉴스 목록
 
 
 ## 챔피언 선택 테마
 
-- 홈의 분야 카드와 왼쪽 목록에서 카테고리를 선택하면 코그모 스플래시, 분야 설명, 아래 글 목록이 함께 바뀝니다.
+- 홈의 분야 카드에서 카테고리를 선택하면 코그모 이미지와 프로필, 분야 설명, 아래 글 목록이 함께 바뀝니다.
 - `기록 보기`로 선택한 분야의 글 목록으로 이동합니다. 기존 기록실과 글 주소도 그대로 사용할 수 있습니다.
 - 오른쪽 위 터미널에서 `ls`로 공개 게시글 제목과 `flag.txt`를 나열하고, `cat 글 제목` 또는 `cat "글 제목"`으로 해당 글을 열 수 있습니다. `cat flag.txt`, `clear`도 사용할 수 있습니다. 결과는 마지막 실행 후 15초 뒤 지워집니다.
 - 챔피언 이미지는 Riot Games의 [Data Dragon](https://developer.riotgames.com/docs/lol#data-dragon) 공식 자료를 사용합니다. 이 사이트는 Riot Games의 공식 서비스가 아닌 개인 블로그입니다.
 - 화면 스타일은 `assets/css/style.css`, 분야 선택 동작은 `assets/js/champion-select.js`, 터미널 동작은 `assets/js/terminal.js`에 있습니다.
 
-기본 스킨은 꿀잼 코그모이며 분야 선택 시 큰 이미지와 소환사 프로필이 함께 변경됩니다. 글 목록은 Jekyll의 공개 `site.posts`에서 생성되어 새 글을 배포하면 자동으로 반영됩니다.
+기본 스킨은 꿀잼 코그모이며 분야 선택 시 배너의 이미지와 소환사 프로필이 함께 변경됩니다. 글 목록은 Jekyll의 공개 `site.posts`에서 생성되어 새 글을 배포하면 자동으로 반영됩니다.

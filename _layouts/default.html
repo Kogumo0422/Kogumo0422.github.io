@@ -23,10 +23,11 @@
       <nav class="site-nav" aria-label="주 메뉴">
         <a class="{% if page.url == '/' %}is-current{% endif %}" href="{{ '/' | relative_url }}">챔피언 선택</a>
         <a class="{% if page.url == '/categories/' %}is-current{% endif %}" href="{{ '/categories/' | relative_url }}">기록실</a>
+        <a{% if page.url == '/news/' or page.security_news %} class="is-current" aria-current="{% if page.security_news %}location{% else %}page{% endif %}"{% endif %} href="{{ '/news/' | relative_url }}">보안 뉴스</a>
         <a class="{% if page.url == '/about/' %}is-current{% endif %}" href="{{ '/about/' | relative_url }}">소개</a>
       </nav>
       <div class="header-actions">
-        <button class="console-toggle" type="button" aria-expanded="false" aria-controls="terminal-drawer"><span aria-hidden="true">&gt;_</span><span class="console-label">터미널</span></button>
+        <button class="console-toggle" type="button" aria-label="터미널" aria-expanded="false" aria-controls="terminal-drawer"><span aria-hidden="true">&gt;_</span><span class="console-label">터미널</span></button>
         <a class="github-link" href="https://github.com/{{ site.author }}" aria-label="GitHub 프로필">GitHub <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -44,7 +45,7 @@
   </header>
   <main id="main" class="site-main">{{ content }}</main>
   <footer class="site-footer">
-    <span>© {{ 'now' | date: '%Y' }} Kogumo0422 <span class="footer-separator">/</span> 궁금한 것은 끝까지.</span>
+    <span>© {{ 'now' | date: '%Y' }} Kogumo0422 <span class="footer-separator">/</span> 보안 공부 기록</span>
     <span class="art-credit"><a href="https://www.leagueoflegends.com/ko-kr/champions/kogmaw/">챔피언 아트 © Riot Games</a> · 비공식 개인 블로그</span>
   </footer>
   <template id="terminal-posts">{% for post in site.posts %}<a href="{{ post.url | relative_url }}" data-title="{{ post.title | escape }}">{{ post.title | escape }}</a>{% endfor %}</template>

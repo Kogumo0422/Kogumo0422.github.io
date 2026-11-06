@@ -52,7 +52,6 @@
 
   const cards = [...document.querySelectorAll('.champion-card')];
   if (!cards.length) return;
-  const choices = [...document.querySelectorAll('[data-pick]')];
   const posts = [...document.querySelectorAll('[data-post-categories]')];
   const stage = document.querySelector('#stage-image');
   const avatar = document.querySelector('#summoner-avatar');
@@ -67,7 +66,7 @@
   const select = (category, updateUrl = true) => {
     const card = cards.find((item) => item.dataset.pick === category);
     if (category && !card) return;
-    choices.forEach((choice) => {
+    cards.forEach((choice) => {
       const selected = choice.dataset.pick === category;
       choice.classList.toggle('is-selected', selected);
       choice.setAttribute('aria-pressed', String(selected));
@@ -80,17 +79,17 @@
       if (stage.getAttribute('src') !== card.dataset.splash) {
         stage.src = card.dataset.splash;
         stage.alt = `${card.dataset.skin} 스플래시 아트`;
-        if (!reduceMotion.matches) stage.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 400 });
+        if (!reduceMotion.matches) stage.animate([{ opacity: 0.6 }, { opacity: 1 }], { duration: 220 });
       }
       title.textContent = category;
       subtitle.textContent = card.dataset.subtitle;
       description.textContent = card.dataset.description;
       english.textContent = card.dataset.english;
     } else {
-      title.textContent = '모든 탐험 기록';
-      subtitle.textContent = '호기심이 남긴 발자취';
-      description.textContent = '각 분야에서 배우고 시도한 내용을 한곳에서 살펴보세요.';
-      english.textContent = 'ALL EXPLORATIONS';
+      title.textContent = '전체 기록';
+      subtitle.textContent = '분야별 학습 기록';
+      description.textContent = '모든 분야의 실습과 학습 기록을 확인할 수 있습니다.';
+      english.textContent = 'ALL FIELDS';
     }
     let visible = 0;
     posts.forEach((post) => {
@@ -99,11 +98,11 @@
       post.hidden = Boolean(category) && !categories.includes(category);
       if (!post.hidden) visible++;
     });
-    archiveTitle.textContent = category ? `${category} 기록` : '모든 탐험 기록';
+    archiveTitle.textContent = category ? `${category} 기록` : '전체 기록';
     empty.hidden = visible > 0;
     document.querySelector('#archive-empty-text').textContent = category
-      ? '아직 이 분야에 작성된 글이 없습니다. 첫 번째 발견을 기다려 주세요.'
-      : '아직 작성된 글이 없습니다. 첫 번째 발견을 기다려 주세요.';
+      ? '아직 이 분야에 작성된 글이 없습니다.'
+      : '아직 작성된 글이 없습니다.';
     if (updateUrl) {
       const url = new URL(window.location.href);
       if (category) url.searchParams.set('category', category);
@@ -112,7 +111,7 @@
     }
   };
 
-  choices.forEach((choice) => choice.addEventListener('click', () => select(choice.dataset.pick)));
+  cards.forEach((choice) => choice.addEventListener('click', () => select(choice.dataset.pick)));
   document.querySelector('#show-all').addEventListener('click', () => select(''));
   const requested = new URLSearchParams(window.location.search).get('category');
   select(cards.some((card) => card.dataset.pick === requested) ? requested : 'CTF/Wargame', false);

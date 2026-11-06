@@ -1,0 +1,32 @@
+---
+layout: default
+title: 보안 뉴스
+permalink: /news/
+---
+{% assign news_posts = site.posts | where_exp: 'post', 'post.security_news == true' %}
+<div class="page-container news-page">
+  <header class="page-heading">
+    <p class="eyebrow">SECURITY BRIEF</p>
+    <h1>보안 뉴스</h1>
+    <p>X에서 확인한 보안 이슈를 원문 링크와 한 줄 요약으로 모읍니다.</p>
+  </header>
+  <section aria-labelledby="news-archive-title">
+    <div class="news-list-heading">
+      <h2 id="news-archive-title">뉴스 아카이브</h2>
+      <span class="count">{{ news_posts.size }}개</span>
+    </div>
+    {% if news_posts.size > 0 %}
+      <ul class="post-list news-list">
+        {% for post in news_posts %}
+        <li class="post-item">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+          <p class="news-summary">{{ post.title | escape }}</p>
+          {% include news-source.html url=post.source_url %}
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="archive-empty"><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>게시된 뉴스가 없습니다</h3><p>첫 글이 올라오면 이곳에서 확인하실 수 있습니다.</p></div></div>
+    {% endif %}
+  </section>
+</div>

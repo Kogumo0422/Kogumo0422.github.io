@@ -10,6 +10,7 @@ author: Kogumo0422
 markdown: kramdown
 highlighter: rouge
 permalink: /posts/:title/
+timezone: Asia/Seoul
 
 kramdown:
   syntax_highlighter: rouge
@@ -21,6 +22,12 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  - scope:
+      path: "_posts/security-news"
+      type: "posts"
+    values:
+      security_news: true
+      permalink: /news/:year/:month/:day/:slug/
 
 exclude:
   - README.md
