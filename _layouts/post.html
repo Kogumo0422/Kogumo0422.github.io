@@ -18,6 +18,21 @@ layout: default
   <a class="reading-back" href="{{ '/' | relative_url }}#archive">← 탐험 기록으로 돌아가기</a>
   <header class="post-header"><p class="eyebrow">EXPLORATION LOG</p><div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>{% for cat in page.categories %}<a class="post-cat" href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}">{{ cat | escape }}</a>{% endfor %}</div><h1 class="post-title">{{ page.title | escape }}</h1>{% if page.tags.size > 0 %}<div class="post-tags">{% for tag in page.tags %}<span>#{{ tag | escape }}</span>{% endfor %}</div>{% endif %}</header>
   <div class="post-content">{{ content }}</div>
-  <nav class="post-nav" aria-label="이전 글과 다음 글">{% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>{% else %}<span></span>{% endif %}{% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>{% endif %}</nav>
+  {% assign technical_posts = site.posts | where_exp: 'post', 'post.security_news != true' %}
+  {% assign next_post = nil %}
+  {% assign previous_post = nil %}
+  {% for post in technical_posts %}
+    {% if post.url == page.url %}
+      {% assign previous_post = technical_posts[forloop.index] %}
+      {% break %}
+    {% endif %}
+    {% assign next_post = post %}
+  {% endfor %}
+  {% if previous_post or next_post %}
+  <nav class="post-nav" aria-label="이전 기술 글과 다음 기술 글">
+    {% if previous_post %}<a href="{{ previous_post.url | relative_url }}">← {{ previous_post.title | escape }}</a>{% else %}<span></span>{% endif %}
+    {% if next_post %}<a href="{{ next_post.url | relative_url }}">{{ next_post.title | escape }} →</a>{% endif %}
+  </nav>
+  {% endif %}
 </article>
 {% endif %}

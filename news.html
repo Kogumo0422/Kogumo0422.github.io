@@ -10,23 +10,48 @@ permalink: /news/
     <h1>보안 뉴스</h1>
     <p>X에서 확인한 보안 이슈를 원문 링크와 한 줄 요약으로 모읍니다.</p>
   </header>
-  <section aria-labelledby="news-archive-title">
-    <div class="news-list-heading">
-      <h2 id="news-archive-title">뉴스 아카이브</h2>
-      <span class="count">{{ news_posts.size }}개</span>
-    </div>
-    {% if news_posts.size > 0 %}
+  <div class="news-layout">
+    <section class="news-calendar" aria-labelledby="news-calendar-title" hidden>
+      <h2 id="news-calendar-title">뉴스 달력</h2>
+      <div class="calendar-month">
+        <button type="button" id="calendar-prev" class="calendar-arrow" aria-label="이전 달"><span aria-hidden="true">‹</span></button>
+        <p id="calendar-month-label" aria-live="polite"></p>
+        <button type="button" id="calendar-next" class="calendar-arrow" aria-label="다음 달"><span aria-hidden="true">›</span></button>
+      </div>
+      <table aria-labelledby="calendar-month-label">
+        <thead>
+          <tr>
+            <th scope="col">일</th>
+            <th scope="col">월</th>
+            <th scope="col">화</th>
+            <th scope="col">수</th>
+            <th scope="col">목</th>
+            <th scope="col">금</th>
+            <th scope="col">토</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-days"></tbody>
+      </table>
+      <p class="calendar-legend">점이 표시된 날짜에 뉴스가 있습니다.</p>
+    </section>
+    <section class="news-results" aria-labelledby="news-archive-title">
+      <div class="news-list-heading">
+        <div class="news-list-label" aria-live="polite" aria-atomic="true">
+          <h2 id="news-archive-title">전체 뉴스</h2>
+          <span class="count" id="news-count">{{ news_posts.size }}개</span>
+        </div>
+        <button class="filter-button" id="news-show-all" type="button" aria-pressed="true" hidden>전체 뉴스 보기</button>
+      </div>
       <ul class="post-list news-list">
         {% for post in news_posts %}
-        <li class="post-item">
+        <li class="post-item" data-news-date="{{ post.date | date: '%Y-%m-%d' }}">
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
           <p class="news-summary">{{ post.title | escape }}</p>
           {% include news-source.html url=post.source_url %}
         </li>
         {% endfor %}
       </ul>
-    {% else %}
-      <div class="archive-empty"><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>게시된 뉴스가 없습니다</h3><p>첫 글이 올라오면 이곳에서 확인하실 수 있습니다.</p></div></div>
-    {% endif %}
-  </section>
+      <div class="archive-empty" id="news-empty"{% if news_posts.size > 0 %} hidden{% endif %}><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>게시된 뉴스가 없습니다</h3><p id="news-empty-text">첫 글이 올라오면 이곳에서 확인하실 수 있습니다.</p></div></div>
+    </section>
+  </div>
 </div>

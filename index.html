@@ -2,8 +2,6 @@
 layout: default
 ---
 {% assign archive_posts = site.posts | where_exp: 'post', 'post.security_news != true' %}
-{% assign news_posts = site.posts | where_exp: 'post', 'post.security_news == true' %}
-{% assign latest_news = news_posts | first %}
 {% assign category_names = site.category_list %}
 {% for category in site.categories %}
   {% assign category_posts = category[1] | where_exp: 'post', 'post.security_news != true' %}
@@ -13,7 +11,6 @@ layout: default
   {% endif %}
 {% endfor %}
 {% assign category_names = category_names | uniq %}
-{% assign default_detail = site.data.category_details['CTF/Wargame'] %}
 
 <header class="lobby-intro">
   <p class="eyebrow"><span class="tiny-diamond" aria-hidden="true"></span> KOGUMO0422 / SECURITY ARCHIVE</p>
@@ -21,14 +18,32 @@ layout: default
   <p class="intro-subtitle">보안 실습, 개발, 기술 문서를 읽고 검증한 과정을 정리합니다.</p>
 </header>
 
-<section class="select-layout" aria-label="기록 분야 선택">
+<section class="archive-section" id="archive" aria-labelledby="archive-title">
+  <div class="archive-heading">
+    <div>
+      <p class="eyebrow">EXPLORATION LOG</p>
+      <h2 id="archive-title">전체 기록</h2>
+    </div>
+    <div class="archive-actions">
+      <button class="filter-button" id="show-all" type="button" aria-pressed="true">전체 기록 보기</button>
+      <a class="text-button" href="#fields">분야 선택 <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+  <ul class="post-list">
+    {% for post in archive_posts %}<li class="post-item" data-post-categories="{{ post.categories | jsonify | escape }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><div class="post-item-body"><div class="post-item-meta">{% for cat in post.categories %}<span>{{ cat | escape }}</span>{% endfor %}</div><a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p></div><span class="post-arrow" aria-hidden="true">↗</span></li>{% endfor %}
+  </ul>
+  <div class="archive-empty" id="archive-empty" {% if archive_posts.size > 0 %}hidden{% endif %}><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>게시된 기록이 없습니다</h3><p id="archive-empty-text">아직 작성된 글이 없습니다.</p></div></div>
+  <noscript><p class="noscript-note">분야별 기록은 <a href="{{ '/categories/' | relative_url }}">기록실</a>에서 확인하실 수 있습니다.</p></noscript>
+</section>
+
+<section class="select-layout" id="fields" aria-label="기록 분야 선택">
   <div class="center-column">
     <div class="champion-stage">
       <div class="stage-copy">
         <p class="eyebrow">CHAMPION SELECT</p>
         <h2>분야별 기록</h2>
         <p>관심 분야를 선택해 관련 글을 확인하세요.</p>
-        <span class="stage-category" id="stage-category">{{ default_detail.english | escape }}</span>
+        <span class="stage-category" id="stage-category">ALL FIELDS</span>
       </div>
       <div class="stage-art">
         <img class="stage-image" id="stage-image" src="{{ '/assets/images/champions/splash-28.webp' | relative_url }}" alt="꿀잼 코그모 스플래시 아트" width="1600" height="944">
@@ -40,7 +55,7 @@ layout: default
       {% assign detail = site.data.category_details[category_name] %}
       {% assign skin = detail.skin | default: 0 %}
       {% assign category_posts = site.categories[category_name] | where_exp: 'post', 'post.security_news != true' %}
-      <button class="champion-card{% if category_name == 'CTF/Wargame' %} is-selected{% endif %}" type="button" data-pick="{{ category_name | escape }}" data-english="{{ detail.english | default: 'ARCHIVE' | escape }}" data-subtitle="{{ detail.subtitle | default: '분야별 학습 기록' | escape }}" data-description="{{ detail.description | default: '이 분야에서 배운 내용을 기록합니다.' | escape }}" data-splash="{{ '/assets/images/champions/splash-' | append: skin | append: '.webp' | relative_url }}" data-skin="{{ detail.skin_name | default: '코그모' | escape }}" aria-pressed="{% if category_name == 'CTF/Wargame' %}true{% else %}false{% endif %}">
+      <button class="champion-card" type="button" data-pick="{{ category_name | escape }}" data-english="{{ detail.english | default: 'ARCHIVE' | escape }}" data-subtitle="{{ detail.subtitle | default: '분야별 학습 기록' | escape }}" data-description="{{ detail.description | default: '이 분야에서 배운 내용을 기록합니다.' | escape }}" data-splash="{{ '/assets/images/champions/splash-' | append: skin | append: '.webp' | relative_url }}" data-skin="{{ detail.skin_name | default: '코그모' | escape }}" aria-pressed="false">
         <span class="card-art"><img src="{{ '/assets/images/champions/portrait-' | append: skin | append: '.webp' | relative_url }}" alt="" width="44" height="48"></span>
         <span class="card-label"><span class="card-name">{{ category_name | escape }}</span><span class="count">{{ category_posts.size | default: 0 }}<span class="sr-only">개 글</span></span></span>
         <span class="card-check" aria-hidden="true"></span>
@@ -56,36 +71,11 @@ layout: default
     </a>
     <div class="selected-field" aria-live="polite">
       <p class="eyebrow">선택한 분야</p>
-      <h3 id="selected-title">CTF/Wargame</h3>
-      <p class="field-subtitle" id="selected-subtitle">{{ default_detail.subtitle | escape }}</p>
-      <p class="field-description" id="selected-description">{{ default_detail.description | escape }}</p>
+      <h3 id="selected-title">전체 기록</h3>
+      <p class="field-subtitle" id="selected-subtitle">분야별 학습 기록</p>
+      <p class="field-description" id="selected-description">모든 분야의 실습과 학습 기록을 확인할 수 있습니다.</p>
     </div>
     <div class="loadout"><p class="micro">MY LOADOUT</p><div class="loadout-items"><span class="loadout-item"><span class="loadout-key">Q</span><span>관찰</span></span><span class="loadout-item"><span class="loadout-key">W</span><span>분석</span></span><span class="loadout-item"><span class="loadout-key">E</span><span>기록</span></span><button class="loadout-item share-trigger" type="button" aria-label="현재 페이지 링크 복사" title="현재 페이지 링크 복사"><span class="loadout-key">R</span><span>공유</span></button></div><p class="share-status" role="status" aria-live="polite"></p></div>
-    <a class="lock-in" id="lock-in" href="#archive"><span>기록 보기</span><span aria-hidden="true">↓</span></a>
+    <a class="lock-in" id="lock-in" href="#archive"><span>기록 보기</span><span aria-hidden="true">↑</span></a>
   </aside>
-</section>
-
-<section class="news-strip" aria-labelledby="home-news-title">
-  <div>
-    <p class="eyebrow">SECURITY BRIEF</p>
-    <h2 id="home-news-title">보안 뉴스</h2>
-  </div>
-  <div class="news-strip-copy">
-    {% if latest_news %}
-      <time datetime="{{ latest_news.date | date_to_xmlschema }}">{{ latest_news.date | date: '%Y.%m.%d' }}</time>
-      <a href="{{ latest_news.url | relative_url }}">{{ latest_news.title | escape }}</a>
-    {% else %}
-      <p>X에서 확인한 보안 이슈와 한 줄 요약을 모읍니다.</p>
-    {% endif %}
-  </div>
-  <a class="text-button news-strip-link" href="{{ '/news/' | relative_url }}">뉴스 모아 보기 <span aria-hidden="true">→</span></a>
-</section>
-
-<section class="archive-section" id="archive" aria-labelledby="archive-title">
-  <div class="archive-heading"><div><p class="eyebrow">EXPLORATION LOG</p><h2 id="archive-title">CTF/Wargame 기록</h2></div><button class="text-button" id="show-all" type="button">전체 기록 보기 <span aria-hidden="true">↗</span></button></div>
-  <ul class="post-list">
-    {% for post in archive_posts %}<li class="post-item" data-post-categories="{{ post.categories | jsonify | escape }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time><div class="post-item-body"><div class="post-item-meta">{% for cat in post.categories %}<span>{{ cat | escape }}</span>{% endfor %}</div><a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a><p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p></div><span class="post-arrow" aria-hidden="true">↗</span></li>{% endfor %}
-  </ul>
-  <div class="archive-empty" id="archive-empty" {% if archive_posts.size > 0 %}hidden{% endif %}><span class="empty-emblem" aria-hidden="true">◇</span><div><h3>게시된 기록이 없습니다</h3><p id="archive-empty-text">아직 이 분야에 작성된 글이 없습니다.</p></div></div>
-  <noscript><p class="noscript-note">분야별 기록은 <a href="{{ '/categories/' | relative_url }}">기록실</a>에서 확인하실 수 있습니다.</p></noscript>
 </section>

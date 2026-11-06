@@ -21,7 +21,7 @@
         <span><strong>KOGUMO<span class="brand-number">0422</span></strong><small>SECURITY ARCHIVE</small></span>
       </a>
       <nav class="site-nav" aria-label="주 메뉴">
-        <a class="{% if page.url == '/' %}is-current{% endif %}" href="{{ '/' | relative_url }}">챔피언 선택</a>
+        <a{% if page.url == '/' %} class="is-current" aria-current="page"{% endif %} href="{{ '/' | relative_url }}">전체 기록 보기</a>
         <a class="{% if page.url == '/categories/' %}is-current{% endif %}" href="{{ '/categories/' | relative_url }}">기록실</a>
         <a{% if page.url == '/news/' or page.security_news %} class="is-current" aria-current="{% if page.security_news %}location{% else %}page{% endif %}"{% endif %} href="{{ '/news/' | relative_url }}">보안 뉴스</a>
         <a class="{% if page.url == '/about/' %}is-current{% endif %}" href="{{ '/about/' | relative_url }}">소개</a>
@@ -48,8 +48,12 @@
     <span>© {{ 'now' | date: '%Y' }} Kogumo0422 <span class="footer-separator">/</span> 보안 공부 기록</span>
     <span class="art-credit"><a href="https://www.leagueoflegends.com/ko-kr/champions/kogmaw/">챔피언 아트 © Riot Games</a> · 비공식 개인 블로그</span>
   </footer>
-  <template id="terminal-posts">{% for post in site.posts %}<a href="{{ post.url | relative_url }}" data-title="{{ post.title | escape }}">{{ post.title | escape }}</a>{% endfor %}</template>
+  {% assign terminal_posts = site.posts | where_exp: 'post', 'post.security_news != true' %}
+  <template id="terminal-posts">{% for post in terminal_posts %}<a href="{{ post.url | relative_url }}" data-title="{{ post.title | escape }}">{{ post.title | escape }}</a>{% endfor %}</template>
   <script src="{{ '/assets/js/terminal.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <script src="{{ '/assets/js/champion-select.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  {% if page.url == '/news/' %}
+  <script src="{{ '/assets/js/news-calendar.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  {% endif %}
 </body>
 </html>

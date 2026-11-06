@@ -59,6 +59,7 @@
   const subtitle = document.querySelector('#selected-subtitle');
   const description = document.querySelector('#selected-description');
   const archiveTitle = document.querySelector('#archive-title');
+  const showAll = document.querySelector('#show-all');
   const empty = document.querySelector('#archive-empty');
   const english = document.querySelector('#stage-category');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -66,6 +67,7 @@
   const select = (category, updateUrl = true) => {
     const card = cards.find((item) => item.dataset.pick === category);
     if (category && !card) return;
+    showAll.setAttribute('aria-pressed', String(!category));
     cards.forEach((choice) => {
       const selected = choice.dataset.pick === category;
       choice.classList.toggle('is-selected', selected);
@@ -112,7 +114,7 @@
   };
 
   cards.forEach((choice) => choice.addEventListener('click', () => select(choice.dataset.pick)));
-  document.querySelector('#show-all').addEventListener('click', () => select(''));
+  showAll.addEventListener('click', () => select(''));
   const requested = new URLSearchParams(window.location.search).get('category');
-  select(cards.some((card) => card.dataset.pick === requested) ? requested : 'CTF/Wargame', false);
+  select(cards.some((card) => card.dataset.pick === requested) ? requested : '', false);
 })();
