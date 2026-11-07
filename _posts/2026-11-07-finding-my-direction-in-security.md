@@ -1,5 +1,5 @@
 ---
-title: "보안 공부를 시작하고, 내 방향을 찾아가는 과정"
+title: "지금까지의 활동 정리"
 date: 2026-11-07
 categories: ["블로그/기술문서"]
 tags: ["회고", "seKUrity", "HTB", "CTF", "Knight Frontier"]
