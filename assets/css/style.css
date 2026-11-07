@@ -207,7 +207,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .about-back { font-size: 10px; color: #7895a2; }
 
 /* Article typography */
-.reading-layout { max-width: 850px; padding: 40px 0 15px; margin: auto; }
+.reading-layout { max-width: 780px; padding: 30px 34px 36px; margin: 32px auto 0; border: 1px solid var(--line); background: #151c22; }
 .reading-back { font-size: 11px; color: #86a6b1; }
 .post-header { margin: 35px 0; border-bottom: 1px solid #786940; padding-bottom: 30px; }
 .post-header .eyebrow { margin-bottom: 20px; }
@@ -215,9 +215,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .post-cat { color: var(--gold); }
 .post-title { font-size: 34px; line-height: 1.5; font-weight: 500; letter-spacing: -.8px; margin: 16px 0 0; overflow-wrap: anywhere; }
 .post-tags { display: flex; flex-wrap: wrap; gap: 12px; font-size: 10px; color: var(--green); margin-top: 20px; }
-.post-content { font-size: 16px; line-height: 1.95; color: #c6d1d4; overflow-wrap: anywhere; }
+.post-content { font-size: 17px; line-height: 1.9; color: #d4d7d6; overflow-wrap: anywhere; word-break: keep-all; }
+.post-content p { margin: 0 0 1.4em; }
+.post-content li + li { margin-top: .35em; }
 .post-content h1, .post-content h2, .post-content h3 { color: #f1ecdc; line-height: 1.5; font-weight: 500; margin: 2em 0 .8em; }
-.post-content h2 { padding-bottom: 10px; border-bottom: 1px solid #2d444b; font-size: 25px; }
+.post-content h2, .post-content h3 { border-top: 1px solid #56616a; padding-top: 1em; }
+.post-content > h2:first-child, .post-content > h3:first-child, .post-content hr + h2, .post-content hr + h3 { border-top: 0; padding-top: 0; }
+.post-content h2 { font-size: 25px; }
 .post-content h3 { font-size: 21px; }
 .post-content a { color: var(--cyan); text-decoration: underline; text-underline-offset: 4px; }
 .post-content img { max-width: 100%; height: auto; border: 1px solid var(--line); }
@@ -228,7 +232,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .post-content table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 14px; }
 .post-content th, .post-content td { border: 1px solid #324c54; padding: 9px 14px; min-width: 80px; }
 .post-content th { background: #122b35; color: var(--gold-light); }
-.post-content hr { border: 0; border-top: 1px solid #334b52; margin: 30px 0; }
+.post-content hr { border: 0; border-top: 1px solid #56616a; margin: 2.25em 0; }
 .post-content ul, .post-content ol { padding-left: 1.5em; }
 .post-nav { display: flex; justify-content: space-between; gap: 30px; font-size: 12px; color: var(--gold); border-top: 1px solid #37463e; padding-top: 25px; margin-top: 50px; }
 .highlight .c, .highlight .cm, .highlight .c1 { color: #738e97; }
@@ -332,9 +336,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
   .about-art > .eyebrow { left: 21px; bottom: 9px; }
   .about-copy { padding: 22px; }
   .about-copy h1 { font-size: 28px; }
-  .reading-layout { padding-top: 25px; }
+  .reading-layout { padding: 22px 18px 26px; margin-top: 20px; }
   .post-title { font-size: 27px; }
-  .post-content { font-size: 15px; }
+  .post-content { font-size: 16px; }
   .post-content h2 { font-size: 22px; }
   .post-content h3 { font-size: 19px; }
   .post-content pre { padding: 15px; font-size: 12px; }
