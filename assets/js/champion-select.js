@@ -65,10 +65,18 @@
   const empty = document.querySelector('#archive-empty');
   const english = document.querySelector('#stage-category');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pagination = document.querySelector('.archive-pagination');
+  const previousPage = document.querySelector('#archive-prev');
+  const nextPage = document.querySelector('#archive-next');
+  const pageStatus = document.querySelector('#archive-page-status');
+  const pageSize = 10;
+  let selectedCategory = '';
+  let currentPage = 1;
 
-  const select = (category, updateUrl = true) => {
+  const select = (category, page = 1, updateUrl = true) => {
     const card = cards.find((item) => item.dataset.pick === category);
     if (category && !card) return;
+    selectedCategory = category;
     showAll.hidden = !card;
     archiveJump.hidden = !card;
     if (card) archiveJumpLabel.textContent = `${category} 글 목록으로`;
@@ -97,15 +105,22 @@
       description.textContent = '모든 분야의 실습과 학습 기록을 확인할 수 있습니다.';
       english.textContent = 'ALL FIELDS';
     }
-    let visible = 0;
-    posts.forEach((post) => {
+    const matchingPosts = posts.filter((post) => {
       let categories = [];
       try { categories = JSON.parse(post.dataset.postCategories); } catch { /* Empty category list. */ }
-      post.hidden = Boolean(category) && !categories.includes(category);
-      if (!post.hidden) visible++;
+      return !category || categories.includes(category);
     });
+    const pageCount = Math.max(1, Math.ceil(matchingPosts.length / pageSize));
+    currentPage = Math.min(pageCount, Math.max(1, Number.isSafeInteger(page) ? page : 1));
+    const offset = (currentPage - 1) * pageSize;
+    const visiblePosts = new Set(matchingPosts.slice(offset, offset + pageSize));
+    posts.forEach((post) => { post.hidden = !visiblePosts.has(post); });
+    pagination.hidden = matchingPosts.length <= pageSize;
+    previousPage.disabled = currentPage === 1;
+    nextPage.disabled = currentPage === pageCount;
+    pageStatus.textContent = `총 ${matchingPosts.length}개 · ${currentPage} / ${pageCount} 페이지`;
     archiveTitle.textContent = category ? `${category} 기록` : '전체 기록';
-    empty.hidden = visible > 0;
+    empty.hidden = matchingPosts.length > 0;
     document.querySelector('#archive-empty-text').textContent = category
       ? '아직 이 분야에 작성된 글이 없습니다.'
       : '아직 작성된 글이 없습니다.';
@@ -113,6 +128,8 @@
       const url = new URL(window.location.href);
       if (category) url.searchParams.set('category', category);
       else url.searchParams.delete('category');
+      if (currentPage > 1) url.searchParams.set('page', String(currentPage));
+      else url.searchParams.delete('page');
       window.history.replaceState(null, '', url);
     }
   };
@@ -122,6 +139,14 @@
     select('');
     archiveTitle.focus({ preventScroll: true });
   });
-  const requested = new URLSearchParams(window.location.search).get('category');
-  select(cards.some((card) => card.dataset.pick === requested) ? requested : '', false);
+  const changePage = (offset) => {
+    select(selectedCategory, currentPage + offset);
+    archiveTitle.focus();
+  };
+  previousPage.addEventListener('click', () => changePage(-1));
+  nextPage.addEventListener('click', () => changePage(1));
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get('category');
+  const requestedPage = Number(params.get('page') || 1);
+  select(cards.some((card) => card.dataset.pick === requested) ? requested : '', requestedPage, false);
 })();

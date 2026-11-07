@@ -143,12 +143,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .news-source:hover { border-color: var(--gold-dim); background: var(--panel-soft); }
 
 /* Archives */
-.archive-section { margin: 0 0 26px; padding-top: 18px; border-top: 1px solid #b59b633b; scroll-margin-top: 30px; }
+.archive-section { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid #b59b633b; scroll-margin-top: 30px; }
 .archive-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
 .archive-heading .eyebrow { font-size: 8px; color: #78949d; letter-spacing: 2px; }
 .archive-actions { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: flex-end; }
 .filter-button { border: 1px solid var(--line); padding: 4px 8px; background: var(--panel); color: var(--text); font-size: 12px; white-space: nowrap; }
 .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: #55939a; color: var(--cyan); background: #142a33; }
+.archive-pagination { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 22px; }
+.archive-pagination .filter-button { min-height: 36px; padding: 6px 12px; }
+.archive-pagination .filter-button:disabled { opacity: .4; cursor: default; background: var(--panel); border-color: var(--line); color: var(--muted); }
+#archive-page-status { color: var(--muted); font: 11px/1.6 var(--mono); }
 .archive-heading h2 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 0; }
 .text-button { border: 0; background: none; color: var(--gold); font-size: 12px; padding: 0; font-weight: 500; }
 .text-button:hover { color: var(--gold-light); }
