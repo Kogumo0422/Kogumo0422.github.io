@@ -11,6 +11,10 @@ tags: ["ToolHijacker", "LLM 에이전트"]
 
 링크: [https://doi.org/10.14722/ndss.2026.230675](https://doi.org/10.14722/ndss.2026.230675)
 
+학회명: Network and Distributed System Security (NDSS) Symposium 2026
+
+논문을 고른 이유: LLM 에이전트의 도구 선택을 겨냥한 이 논문의 방식이 기존 프롬프트 인젝션 공격과 어떻게 다른지 궁금해서 골랐다.
+
 이 논문이 다루는 문제는 무엇인가? 
 
 - LLM 에이전트가 외부 도구를 선택할 때, 악성 도구 문서로 인해 공격자가 원하는 도구를 선택하게 되는 문제이다.
