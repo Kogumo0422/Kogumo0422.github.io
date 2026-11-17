@@ -1,5 +1,5 @@
 ---
-title: "논문 읽으면서 요약 (개인적)"
+title: "ToolHijacker 논문 읽기 노트"
 date: 2026-11-17
 categories: ["논문/컨퍼런스"]
 tags: ["ToolHijacker", "LLM 에이전트"]
