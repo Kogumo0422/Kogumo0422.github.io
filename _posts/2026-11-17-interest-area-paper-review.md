@@ -81,4 +81,4 @@ ToolHijacker는 검색과 선택을 함께 최적화했기 때문에 기존 수�
     31. PPL-W는 문장을 구간별로 나누어 이상함을 측정하여 방어하는 기법
     32. 휴리스틱은 항상 완벽하진 않지만, 경험상 잘 통하는 빠른 판단 방법
 
-[논문 읽으면서 요약 (개인적)]({% post_url 2026-11-17-toolhijacker-reading-notes %})
+[ToolHijacker 논문 읽기 노트]({% post_url 2026-11-17-toolhijacker-reading-notes %})

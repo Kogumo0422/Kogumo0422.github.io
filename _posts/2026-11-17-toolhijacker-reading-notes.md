@@ -5,6 +5,12 @@ categories: ["논문/컨퍼런스"]
 tags: ["ToolHijacker", "LLM 에이전트"]
 ---
 
+### 논문: Prompt Injection Attack to Tool Selection in LLM Agents
+
+저자: Jiawen Shi 외 5명
+
+링크: [https://doi.org/10.14722/ndss.2026.230675](https://doi.org/10.14722/ndss.2026.230675)
+
 - **초록**
 
 도구 선택은 LLM 에이전트의 핵심
