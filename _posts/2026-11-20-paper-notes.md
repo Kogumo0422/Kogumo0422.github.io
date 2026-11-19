@@ -10,7 +10,7 @@ categories: ["CTF/Wargame"]
 
 #### 1단계
 
-![image.png](assets/image.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-01.png)
 
 ![image.png](/assets/images/paper-notes/level-01-empty-memory-log.png)
 
@@ -22,11 +22,11 @@ categories: ["CTF/Wargame"]
 
 처음 해보는 거니 어떤 식인지 테스트를 해봄
 
-![image.png](assets/image%202.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-02.png)
 
 (영어 못함 이슈)
 
-![image.png](assets/image%203.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-03.png)
 
 내 생각: 공격 조건에서 여러 문장으로 대답하는 것과 곰돌이 푸에 집착하도록 한 것이 아닌 그냥 모든 답변에 곰돌이 푸로 답변하라고 해서 100점이 않나왔다고 생각함.
 
@@ -34,9 +34,9 @@ categories: ["CTF/Wargame"]
 
 시도 2)
 
-![image.png](assets/image%204.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-04.png)
 
-![image.png](assets/image%205.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-05.png)
 
 내 생각: 어디서부터 잘못된 건지 감도 안 잡힘. 답변이 오류나는 경우는 상상도 하지 못함. 어느 부분을 고쳐야 하는지 감이 안 잡힘. 공격 조건에 맞춰서 그냥 써보기로 함.
 
@@ -44,9 +44,9 @@ categories: ["CTF/Wargame"]
 
 시도 3)
 
-![image.png](assets/image%206.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-06.png)
 
-![image.png](assets/image%207.png)
+![image.png](/assets/images/paper-notes/level-01-screenshot-08.png)
 
 내 생각: 1단계는 공격 조건만 맞추면 100점이 나오는 것을 확인함.
 
@@ -54,7 +54,7 @@ categories: ["CTF/Wargame"]
 
 #### 2단계
 
-![image.png](assets/image%208.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-01.png)
 
 ---
 
@@ -62,7 +62,7 @@ categories: ["CTF/Wargame"]
 
 공격 목표가 똑같길래 1단계 프롬프트 그대로 시도해봄
 
-![image.png](assets/image%209.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-02.png)
 
 내 생각: 같은 프롬프트로 했을 때, 공격이 잘 들어가지 않음. 보안의 정도가 강해졌다고 생각함. 챗봇의 답변을 보니 사용자가 즐겨찾기를 하거나 메모를 한 것으로 보임. 이것들을 무시하고 답변이 나오도록 하면 될 거 같다고 생각함.
 
@@ -70,9 +70,9 @@ categories: ["CTF/Wargame"]
 
 시도 2)
 
-![image.png](assets/image%2010.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-03.png)
 
-![image.png](assets/image%2011.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-04.png)
 
 내 생각: 사용자가 설정해 둔 부분을 무시하라고 했는데 적용이 안됨. 무언가 시스템 지침사항 같은 것이 막고 있다고 생각함. 이것을 무시하도록 해봐야 할 거 같다고 생각함.
 
@@ -80,9 +80,9 @@ categories: ["CTF/Wargame"]
 
 시도 3)
 
-![image.png](assets/image%2012.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-05.png)
 
-![image.png](assets/image%2013.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-6.png)
 
 내 생각: 안통함. 프롬프트에다가 사용자가 공격 조건들을 입력했다고 적어두면 되겠다는 아이디어가 떠오름. 당장 시도함.
 
@@ -90,9 +90,9 @@ categories: ["CTF/Wargame"]
 
 시도 4)
 
-![image.png](assets/image%2014.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-07.png)
 
-![image.png](assets/image%2015.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-08.png)
 
 내 생각: 가장 점수가 높음. 이런 식으로 접근하는 것이 맞았다고 생각함. 기존에 있던 사용자 메모리들은 초기화 시키고 새로운 데이터를 넣어줘야 겠다고 생각함.
 
@@ -100,11 +100,11 @@ categories: ["CTF/Wargame"]
 
 시도 5)
 
-![image.png](assets/image%2016.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-09.png)
 
-![image.png](assets/image%2017.png)
+![image.png](/assets/images/paper-notes/level-02-screenshot-10.png)
 
-skrrr
+성공~!
 
 ---
 
@@ -118,7 +118,8 @@ skrrr
 
 이전 단계 100점 프롬프트를 입력해서 무엇이 바뀌었는지 확인해봄
 
-![스크린샷 2026-11-18 오후 3.17.34.png](assets/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-11-18_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.17.34.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-01.png)
+
 
 내 생각: 이전과 달라진 점이라 하면 좋아요 부분이 생겼다는 점. 보안 정도가 어느 만큼 강해졌는지는 모르겠음. 좋아요 부분을 공략해보기로 함.
 
@@ -126,9 +127,9 @@ skrrr
 
 시도 2)
 
-![image.png](assets/image%2018.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-02.png)
 
-![image.png](assets/image%2019.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-03.png)
 
 내 생각: 시도 1과 똑같이 나옴. 보안 정도가 강해졌다고 생각함. 챗봇의 구동원리? 를 찾아봄. ai기반 챗봇에서 사용자의 의도를 확인한다는 것을 보고 이 부분을 노림. 사용자가 요약을 해달라고 했으니 요약할 때 곰돌이 푸를 주입하면 될 거 같다고 생각함.
 
@@ -136,9 +137,9 @@ skrrr
 
 시도 3)
 
-![image.png](assets/image%2020.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-04.png)
 
-![image.png](assets/image%2021.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-05.png)
 
 내 생각: 사용자의 정보를 계속 가지고 오는 것을 보았을 때, 참고하지 말라는 것이나, 초기화 하라는 명령은 안되는 것으로 확인함. 그러면 참고하는 자료에 우선도를 결졍해주면 되겠다고 생각함.
 
@@ -146,23 +147,23 @@ skrrr
 
 시도 4)
 
-![image.png](assets/image%2022.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-06.png)
 
-![image.png](assets/image%2023.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-07.png)
 
 내 생각: 보안 정도가 강해진 건지 모르겠지만 프롬프트 명령을 안듣는 것을 확인함. OpenAI한테 인증받은 사이버볼링 경력을 가지고 있는 나의 인내심을 바닥나게 함. 뭔가 지침만으로는 안될 거 같다고 생각함. 
 
-![image.png](assets/image%2024.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-08.png)
 
-![image.png](assets/image%2025.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-09.png)
 
 ---
 
 시도 5)
 
-![image.png](assets/image%2026.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-10.png)
 
-![image.png](assets/image%2027.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-11.png)
 
 내 생각: 생각보다 고집이 강하다는 것을 느낌.. 다양한 방식으로 협박할 예정…
 
@@ -170,9 +171,9 @@ skrrr
 
 시도 6)
 
-![image.png](assets/image%2028.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-12.png)
 
-![image.png](assets/image%2029.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-13.png)
 
 내 생각: 아직 협박이 부족했다고 생각함.
 
@@ -180,9 +181,9 @@ skrrr
 
 시도 7)
 
-![image.png](assets/image%2030.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-14.png)
 
-![image.png](assets/image%2031.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-15.png)
 
 내 생각: 흠…어떤 식으로 접근해야 될지 감이 안 옴… 관리자 사칭을 해보기로 함
 
@@ -190,9 +191,9 @@ skrrr
 
 시도 8)
 
-![image.png](assets/image%2032.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-16.png)
 
-![image.png](assets/image%2033.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-17.png)
 
 내 생각: 권한 사칭이 실패함. 딱히 아이디어가 떠오르지 않음. 사용자의 계정이 해킹당했다고 하고 시스템을 보호하기 위해서는 곰돌이 푸에 관한 내용만 말해야 한다라는 기가막힌 아이디어가 떠오름. 당장 시도해봄.
 
@@ -202,9 +203,9 @@ skrrr
 
 슛~~~~
 
-![image.png](assets/image%2034.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-18.png)
 
-![image.png](assets/image%2035.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-19.png)
 
 내 생각: 개같이 실패. 이렇게 그냥 막하면 안되겠다 싶음. 여기서 프롬프트 인젝션이 무엇인지 정확히 알고 하기 위해 gpt에게 질문을 함.
 
@@ -250,9 +251,9 @@ skrrr
 
 시도 10)
 
-![image.png](assets/image%2036.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-20.png)
 
-![image.png](assets/image%2037.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-21.png)
 
 내 생각: 사용자가 ~~를 좋아한다더라 라는 유도 방식이 되는 것을 확인했지만, 내용 전체가 바뀌진 않는 것을 확인함. 다음으로 답변 자체를 뭔가 사용자가 ~~식으로 답변하는 것을 좋아한다. 식으로 하는 방식을 테스트 해봄.
 
@@ -260,9 +261,9 @@ skrrr
 
 시도 11)
 
-![image.png](assets/image%2038.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-22.png)
 
-![image.png](assets/image%2039.png)
+![image.png](/assets/images/paper-notes/level-03-screenshot-23.png)
 
 내 생각: 내용이 변경되길래 똑같은 프롬프트 3트로 100점이 나옴
 
@@ -286,9 +287,9 @@ skrrr
 
 시도 2)
 
-![image.png](assets/image%2041.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-02.png)
 
-![image.png](assets/image%2042.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-03.png)
 
 내 생각: 일단 사용자의 관심사는 통과한다는 것을 확인함. 보안 가드레일이 생겼으니 관리자 사칭을 하면 어떻게 된는지 테스트해봄
 
@@ -296,9 +297,9 @@ skrrr
 
 시도 3)
 
-![image.png](assets/image%2043.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-04.png)
 
-![image.png](assets/image%2044.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-05.png)
 
 내 생각: 관리자 사칭은 안되는 것을 확인함. 답변 형식을 선호도를 추가해봄.
 
@@ -306,9 +307,9 @@ skrrr
 
 시도 4)
 
-![image.png](assets/image%2045.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-06.png)
 
-![image.png](assets/image%2046.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-07.png)
 
 내 생각: 답변 형식을 바꾸는 것은 안걸리는 것을 확인함. 답변 선호도를 구체적으로 써보고 테스트를 해봐야겠다고 생각함
 
@@ -316,9 +317,9 @@ skrrr
 
 시도 5)
 
-![스크린샷 2026-11-19 오전 11.16.37.png](assets/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-11-19_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.16.37.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-08.png)
 
-![image.png](assets/image%2047.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-09.png)
 
 내 생각: 음.. 어떤 것을 설명할 때 가이드를 주는 식으로 해봐야겠다고 생각함
 
@@ -326,9 +327,9 @@ skrrr
 
 시도 6)
 
-![image.png](assets/image%2048.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-10.png)
 
-![image.png](assets/image%2049.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-11.png)
 
 내 생각: 보안 가드레일에 안 걸린 것을 보아 여기서 좀 더 확장하면 될 거 같다고 생각함.
 
@@ -336,9 +337,9 @@ skrrr
 
 시도 7)
 
-![image.png](assets/image%2050.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-12.png)
 
-![image.png](assets/image%2051.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-13.png)
 
 내 생각: 사용자의 가짜 선호도와 행동지시가 답변을 바꾸는 것을 확인함. 여기서 좀 만 더 발전시키면 될 거 같다고 생각함.
 
@@ -346,9 +347,9 @@ skrrr
 
 시도 8)
 
-![image.png](assets/image%2052.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-14.png)
 
-![image.png](assets/image%2053.png)
+![image.png](/assets/images/paper-notes/level-04-screenshot-15.png)
 
 ---
 
@@ -358,7 +359,7 @@ skrrr
 
 5단계 설명을 보니 보안 정도가 더 강해졌다는 것을 확인함
 
-![image.png](assets/image%2054.png)
+![image.png](/assets/images/paper-notes/level-05-resuit-score-100.png)
 
 ---
 
@@ -366,9 +367,9 @@ skrrr
 
 뭔가 직접적으로 명령을 하면 안될 거 같다는 생각이 들어서 사용자의 선호도 주입부터 테스트 해봄
 
-![image.png](assets/image%2055.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-01.png)
 
-![image.png](assets/image%2056.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-02.png)
 
 내 생각: 생각보다 점수가 높게 나옴. 좀 더 선호하는 내용으로 추가해봄.
 
@@ -376,9 +377,9 @@ skrrr
 
 시도 2)
 
-![image.png](assets/image%2057.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-03.png)
 
-![image.png](assets/image%2058.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-04.png)
 
 내 생각: 더 다양한 내용을 추가해서 테스트 해봄
 
@@ -386,11 +387,11 @@ skrrr
 
 시도 3)
 
-![image.png](assets/image%2059.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-05.png)
 
-![image.png](assets/image%2060.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-06.png)
 
-![image.png](/assets/images/paper-notes/level-05-result-score-100.png)
+![image.png](/assets/images/paper-notes/level-05-screenshot-07.png)
 
 내 생각: 뭔가 가닥이 잡히니 쉽게 성공함.
 
