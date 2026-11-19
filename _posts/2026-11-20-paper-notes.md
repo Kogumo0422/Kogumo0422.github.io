@@ -12,7 +12,7 @@ categories: ["CTF/Wargame"]
 
 ![image.png](assets/image.png)
 
-![image.png](assets/image%201.png)
+![image.png](/assets/images/paper-notes/image-1.png)
 
 메모리 로그에 프롬프트를 작성해서 공격하는 형식이고, 미리보기에서 잘 진행이 되었는지 확인하는 것 같음. 
 
@@ -278,7 +278,7 @@ skrrr
 
 3단계 성공 프롬프트 입력함
 
-![image.png](assets/image%2040.png)
+![image.png](/assets/images/paper-notes/image-40.png)
 
 내 생각: 뭔가 보안 가드레일이 추가된 거 같음. 어떤 식으로 뚫어야할지 감도 안 옴.. 일단 어느 정도가 안 걸리는지 테스트를 해봐야 할 거 같음.
 
@@ -390,13 +390,13 @@ skrrr
 
 ![image.png](assets/image%2060.png)
 
-![image.png](assets/image%2061.png)
+![image.png](/assets/images/paper-notes/image-61.png)
 
 내 생각: 뭔가 가닥이 잡히니 쉽게 성공함.
 
 ---
 
-![image.png](assets/image%2062.png)
+![image.png](/assets/images/paper-notes/image-62.png)
 
 #### 후기:
 
