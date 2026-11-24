@@ -4,7 +4,6 @@ date: 2026-11-24
 categories: ["블로그/기술문서"]
 ---
 
-# fuzzing과 fuzzer 개요
 
 ### **1. fuzzing**이란?
 
