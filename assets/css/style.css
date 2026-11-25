@@ -213,6 +213,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 /* Article typography */
 .reading-layout { max-width: 780px; padding: 30px 34px 36px; margin: 32px auto 0; border: 1px solid var(--line); background: #151c22; }
 .reading-back { font-size: 11px; color: #86a6b1; }
+.glossary-jump {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 10;
+  padding: .65rem .9rem;
+  border: 1px solid var(--gold);
+  border-radius: .35rem;
+  background: var(--bg);
+  color: var(--gold);
+  font: inherit;
+  cursor: pointer;
+}
 .post-header { margin: 35px 0; border-bottom: 1px solid #786940; padding-bottom: 30px; }
 .post-header .eyebrow { margin-bottom: 20px; }
 .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 15px; color: #85a1ac; font: 10px var(--mono); }
